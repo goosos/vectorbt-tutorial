@@ -1,5 +1,7 @@
 # VectorBT Tutorial: Backtest a Strategy in 30 Minutes
 
+> **📦 Part 1 of [_Build Your Own Quant Research System_](https://github.com/goosos/quant-toolkit)** — follow the series and you'll build a complete, modular research toolkit from scratch, one tutorial at a time.
+
 **Target keyword:** vectorbt tutorial
 **Meta description:** Learn VectorBT from scratch: install, download free data, backtest a moving-average crossover strategy, read the tearsheet, and scan thousands of parameters in seconds. Complete runnable code included.
 
@@ -437,16 +439,41 @@ Total: 10 minutes from idea to a defensible answer. That's the VectorBT superpow
 
 ---
 
+## 8c. Merge Into the Toolkit: `backtest.py`
+
+This tutorial isn't a standalone trick — it's **Part 1** of a system we're building together. The core logic from this article now lives as the first module of [goosos/quant-toolkit](https://github.com/goosos/quant-toolkit):
+
+```python
+from quant_toolkit.backtest import run_backtest, ma_crossover_signals, summary
+
+entries, exits = ma_crossover_signals(price, fast=20, slow=50)
+pf = run_backtest(price, entries, exits)
+print(summary(pf))
+# {'total_return': 0.3846, 'sharpe': 1.29, 'max_drawdown': -0.1131, ...}
+```
+
+What changed from the tutorial script? Almost nothing — that's the point:
+
+- `run_backtest()` wraps `vbt.Portfolio.from_signals` with honest defaults (fees, slippage, `freq` always set)
+- `ma_crossover_signals()` bundles signal generation + the one-bar shift (no lookahead, ever)
+- `summary()` returns the metrics that matter as a plain dict
+
+**Why a toolkit, not just scripts?** Each tutorial in this series adds one module. By Part 10 you'll have `backtest`, `validation`, `overfitting`, `costs`, `sizing`, `data`, and `metrics` — a research system you understand line by line, because you watched every line get written. That's the difference between *using* a library and *owning* your process.
+
+> **Next:** [Part 2: Walk-Forward Analysis](/walk-forward-analysis) adds `validation.py` — testing on data your parameter scan never saw.
+
+---
+
 ## 9. Where to Go Next
 
-You now have a complete, honest backtesting workflow. Natural next steps:
+You now have a complete, honest backtesting workflow — and the first module of your toolkit. Natural next steps:
 
-1. **[Walk-Forward Analysis](/walk-forward-analysis)** *(next article)* — the antidote to overfitting: test on data the parameter scan never saw.
+1. **[Part 2: Walk-Forward Analysis](/walk-forward-analysis)** *(next in series)* — adds `validation.py`: the antidote to overfitting.
 2. **Portfolio backtests** — `from_signals` broadcasts across columns, so multi-asset portfolios are nearly free. Try SPY + TLT + GLD.
 3. **Stops** — `sl_stop=0.05, tp_stop=0.10` adds stop-loss/take-profit in one line. Measure whether they help or just add churn.
-4. **[Backtest Overfitting, PBO & Deflated Sharpe](/backtest-overfitting-pbo-deflated-sharpe)** — the methodology behind not fooling yourself.
+4. **[Part 4: Backtest Overfitting, PBO & Deflated Sharpe](/backtest-overfitting-pbo-deflated-sharpe)** — adds `overfitting.py`: the methodology behind not fooling yourself.
 
-The full code for this tutorial — data download, backtest, charts, and the parameter scan — is in [goosos/vectorbt-tutorial](https://github.com/goosos/vectorbt-tutorial). Clone it, break it, make it yours.
+The full code for this tutorial is in [goosos/vectorbt-tutorial](https://github.com/goosos/vectorbt-tutorial). The growing toolkit is in [goosos/quant-toolkit](https://github.com/goosos/quant-toolkit). Clone them, break them, make them yours.
 
 ---
 
@@ -497,4 +524,4 @@ Three reasons: (1) Yahoo data updates — your 3-year window covers different da
 
 ---
 
-*Code: [goosos/vectorbt-tutorial](https://github.com/goosos/vectorbt-tutorial) · Next: [Walk-Forward Analysis](/walk-forward-analysis) · Part of the [Goosos Quantitative Trading Lab](https://goosos.com) tutorial series.*
+*Part 1 of [Build Your Own Quant Research System](https://github.com/goosos/quant-toolkit) · Code: [goosos/vectorbt-tutorial](https://github.com/goosos/vectorbt-tutorial) · Toolkit: [goosos/quant-toolkit](https://github.com/goosos/quant-toolkit) · Next: [Part 2: Walk-Forward Analysis](/walk-forward-analysis)*
