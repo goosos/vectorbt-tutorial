@@ -4,6 +4,8 @@
 
 > **✅ Tested:** vectorbt 1.1.1 · Python 3.12 · yfinance 0.2.40 · Last verified: 2026-10-07 · [Update policy](https://goosos.com/about#freshness)
 
+> **📊 Market snapshot** (as of 2026-10-07): SPY $779.09 · QQQ $759.66 · BTC $84,186 · ETH $2,613 — for context on when this was written.
+
 **Target keyword:** vectorbt tutorial
 **Meta description:** Learn VectorBT from scratch: install, download free data, backtest a moving-average crossover strategy, read the tearsheet, and scan thousands of parameters in seconds. Complete runnable code included.
 
