@@ -2,6 +2,8 @@
 
 > **📦 Part 1 of [_Build Your Own Quant Research System_](https://github.com/goosos/quant-toolkit)** — follow the series and you'll build a complete, modular research toolkit from scratch, one tutorial at a time.
 
+> **✅ Tested:** vectorbt 1.1.1 · Python 3.12 · yfinance 0.2.40 · Last verified: 2026-10-07 · [Update policy](https://goosos.com/about#freshness)
+
 **Target keyword:** vectorbt tutorial
 **Meta description:** Learn VectorBT from scratch: install, download free data, backtest a moving-average crossover strategy, read the tearsheet, and scan thousands of parameters in seconds. Complete runnable code included.
 
